@@ -1,0 +1,71 @@
+
+R version 3.1.2 (2014-10-31) -- "Pumpkin Helmet"
+Copyright (C) 2014 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin13.4.0 (64-bit)
+
+R是自由软件，不带任何担保。
+在某些条件下你可以将其自由散布。
+用'license()'或'licence()'来看散布的详细条件。
+
+R是个合作计划，有许多人为之做出了贡献.
+用'contributors()'来看合作者的详细情况
+用'citation()'会告诉你如何在出版物中正确地引用R或R程序包。
+
+用'demo()'来看一些示范程序，用'help()'来阅读在线帮助文件，或
+用'help.start()'通过HTML浏览器来看帮助文件。
+用'q()'退出R.
+
+[R.app GUI 1.65 (6833) x86_64-apple-darwin13.4.0]
+
+[History restored from /Users/user/.Rapp.history]
+
+> library("rjson")
+> loginStr = fromJSON(file = 'logins.json', unexpected.escape = "error")
+
+> loginDateTime = strptime(loginStr, "%Y-%m-%dT%H:%M:%S")
+
+> hist(loginDateTime, breaks = lengths(loginDateTime))
+错误于hist.POSIXt(loginDateTime, breaks = lengths(loginDateTime)) : 
+  没有"lengths"这个函数
+> hist(loginDateTime, breaks = length(loginDateTime))
+starting httpd help server ... done
+> xlable = "Login Time"
+> hist(loginDateTime, breaks = length(loginDateTime), main = "Frequency Of Logins By Hour For March & April 2012", xlab = "Login Time", ylab = "Frequency")
+> hist(strptime(loginStr, "%Y-%m-%d"), breaks = length(loginDateTime), main = "Frequency Of Logins By Hour For March & April 2012", xlab = "Login Date", ylab = "Frequency")
+> hist(strptime(loginStr, "%Y-%m-%d"), breaks = length(loginDateTime), main = "Frequency Of Logins By Date For March & April 2012", xlab = "Login Date", ylab = "Frequency")
+> hist(subset(loginDateTime, loginDateTime<strptime("2012-02-01T00:00:00", "%Y-%m-%dT%H:%M:%S")), breaks = length(loginDateTime), main = "Frequency Of Logins By Hour For March & April 2012", xlab = "Login Time", ylab = "Frequency")
+错误于hist.default(unclass(x), unclass(breaks), plot = FALSE, warn.unused = FALSE,  : 
+  character(0)
+此外: 警告信息：
+1: In min(x) : min里所有的参数都不存在; 回覆Inf
+2: In max(x) : max里所有的参数都不存在；回覆-Inf
+> subset(loginDateTime, loginDateTime<strptime("2012-02-01T00:00:00", "%Y-%m-%dT%H:%M:%S"))
+character(0)
+> hist(subset(loginDateTime, loginDateTime<"2012-02-01T00:00:00", breaks = length(loginDateTime), main = "Frequency Of Logins By Hour For March & April 2012", xlab = "Login Time", ylab = "Frequency")
++ hist(subset(loginDateTime, loginDateTime<"2012-02-01T00:00:00", breaks = length(loginDateTime), main = "Frequency Of Logins By Hour For March & April 2012", xlab = "Login Time", ylab = "Frequency")
+错误: 意外的符号 in:
+"hist(subset(loginDateTime, loginDateTime<"2012-02-01T00:00:00", breaks = length(loginDateTime), main = "Frequency Of Logins By Hour For March & April 2012", xlab = "Login Time", ylab = "Freque
+hist"
+> hist(subset(loginDateTime, loginDateTime<"2012-02-01T00:00:00"), breaks = length(loginDateTime), main = "Frequency Of Logins By Hour For March & April 2012", xlab = "Login Time", ylab = "Frequency")
+错误于hist.default(unclass(x), unclass(breaks), plot = FALSE, warn.unused = FALSE,  : 
+  character(0)
+此外: 警告信息：
+1: In min(x) : min里所有的参数都不存在; 回覆Inf
+2: In max(x) : max里所有的参数都不存在；回覆-Inf
+> hist(subset(loginDateTime, loginDateTime<strptime(""2012-03-02T00:00:00+00:00"", "%Y-%m-%dT%H:%M:%S")), breaks = length(loginDateTime), main = "Frequency Of Logins By Hour For March & April 2012", xlab = "Login Time", ylab = "Frequency")
+错误: 意外的数值量 in "hist(subset(loginDateTime, loginDateTime<strptime(""2012"
+> hist(subset(loginDateTime, loginDateTime<strptime("2012-03-02T00:00:00+00:00", "%Y-%m-%dT%H:%M:%S")), breaks = length(loginDateTime), main = "Frequency Of Logins By Hour For March & April 2012", xlab = "Login Time", ylab = "Frequency")
+> hist(subset(loginDateTime, loginDateTime>strptime("2012-04-30T00:00:00+00:00", "%Y-%m-%dT%H:%M:%S")), breaks = length(loginDateTime), main = "Frequency Of Logins By Hour For March & April 2012", xlab = "Login Time", ylab = "Frequency")
+> hist(subset(strptime(loginStr, "%Y-%m-%d"), loginDateTime>strptime("2012-04-30T00:00:00+00:00", "%Y-%m-%dT%H:%M:%S")), breaks = length(loginDateTime), main = "Frequency Of Logins By Hour For March & April 2012", xlab = "Login Time", ylab = "Frequency")
+> hist(subset(strptime(loginStr, "%Y-%m-%dT%H"), strptime(loginStr, "%Y-%m-%d")>strptime("2012-04-30T00:00:00+00:00", "%Y-%m-%dT%H")), breaks = length(loginDateTime), main = "Frequency Of Logins By Hour For March & April 2012", xlab = "Login Time", ylab = "Frequency")
+错误于hist.default(unclass(x), unclass(breaks), plot = FALSE, warn.unused = FALSE,  : 
+  character(0)
+此外: 警告信息：
+1: In min(x) : min里所有的参数都不存在; 回覆Inf
+2: In max(x) : max里所有的参数都不存在；回覆-Inf
+> hist(subset(strptime(loginStr, "%Y-%m-%dT%H"), strptime(loginStr, "%Y-%m-%dT%H")>strptime("2012-04-30T00:00:00+00:00", "%Y-%m-%dT%H")), breaks = length(loginDateTime), main = "Frequency Of Logins By Hour For March & April 2012", xlab = "Login Time", ylab = "Frequency")
+> hist(subset(strptime(loginStr, "%Y-%m-%dT%H"), strptime(loginStr, "%Y-%m-%dT%H")>strptime("2012-04-30T00:00:00+00:00", "%Y-%m-%dT%H")), breaks = length(loginDateTime), main = "Frequency Of Logins By Hour on April 30 2012", xlab = "Login Time", ylab = "Frequency")
+2015-05-29 00:32:20.834 R[36782:2029768] Communications error: <OS_xpc_error: <error: 0x7fff73753b60> { count = 1, contents =
+	"XPCErrorDescription" => <string: 0x7fff73753fa8> { length = 22, contents = "Connection interrupted" }
+}>
+> 
